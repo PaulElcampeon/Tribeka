@@ -24,9 +24,18 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up);
-        Debug.DrawLine(transform.position, hit.point);
-        lazer.SetPosition(0, transform.position);
-        lazer.SetPosition(1, hit.point);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 10f);
+
+        if (hit.point != Vector2.zero)
+        {
+            Debug.DrawLine(transform.position, hit.point, Color.red);
+            lazer.SetPosition(0, transform.position);
+            lazer.SetPosition(1, hit.point);
+        } else
+        {
+            Debug.DrawLine(transform.position, transform.position + transform.right * 10f, Color.red);
+            lazer.SetPosition(0, transform.position);
+            lazer.SetPosition(1, transform.position + transform.right * 10f);
+        }
     }
 }

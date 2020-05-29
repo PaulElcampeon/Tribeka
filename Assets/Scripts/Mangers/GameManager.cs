@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public int difficulty;
+
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+
+        DontDestroyOnLoad(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +24,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SetDifficulty(int difficulty)
+    {
+        this.difficulty = difficulty;
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4095867108706390163}
   m_Layer: 0
   m_Name: Block Type B
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &4095867108706390163
 MonoBehaviour:
@@ -71,9 +71,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547bfe271c6f1ee499a653c1e3ed04cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolRef: {fileID: 0}
+  patrolRef: {fileID: 8478229618454991207, guid: ca33410c71f750144b25aa0da63d5b26,
+    type: 3}
   noOfPatrols: 0
-  currentScale: 0
 --- !u!1 &4095867109212155173
 GameObject:
   m_ObjectHideFlags: 0
