@@ -7,8 +7,19 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField]
     private GameObject[] blockTypes;
 
-    private int difficulty;
+    [SerializeField]
+    private GameObject startRef;
 
+    [SerializeField]
+    private GameObject endRef;
+
+    [SerializeField]
+    private GameObject playerRef;
+
+    [SerializeField]
+    private GameObject floorRef;
+
+    private int difficulty;
     private int noOfBlocks;
     private float width;
     private float height;
@@ -17,12 +28,15 @@ public class LevelGenerator : MonoBehaviour
     private float yMin = 0;
     private float bufferSpaceSize = 3f;
 
-    private void Awake()
+    private void Start()
     {
-        difficulty = 1;//GameManager.instance.difficulty;
+        difficulty = GameManager.instance.difficulty;
         AssignPropertiesBasedOnDifficulty();
+        ResizeFloor();
+        AssignStartAndEnd();
+        SpawnPlayer();
         //Camera.main.transform.position = new Vector3(width/2, height/2, Camera.main.transform.position.z);
-        //Generate();
+        Generate();
     }
 
     public void Generate()
@@ -71,11 +85,28 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    private void ResizeFloor()
+    {
+        GameObject floor = Instantiate(floorRef, new Vector3(width / 2f, height / 2f), Quaternion.identity);
+        floor.transform.localScale = new Vector3(width, height);
+    }
+
+    private void SpawnPlayer()
+    {
+        Instantiate(playerRef, startRef.transform.position, Quaternion.identity);
+    }
+
+    private void AssignStartAndEnd()
+    {
+        Instantiate(startRef, new Vector3(0.5f, 0.5f), Quaternion.identity);
+        Instantiate(endRef, new Vector3(width - 0.5f, height - 0.5f), Quaternion.identity);
+    }
+
     private void AssignPropertiesBasedOnDifficulty()
     {
         if (difficulty == 1)
         {
-            noOfBlocks = 4;
+            noOfBlocks = 5;
             width = 20f;
             height = 10f;
             xMax = width;
@@ -86,7 +117,7 @@ public class LevelGenerator : MonoBehaviour
         if (difficulty == 2)
         {
             noOfBlocks = 10;
-            width = 30f;
+            width = 25f;
             height = 15f;
             xMax = width;
             yMax = height;
@@ -95,7 +126,7 @@ public class LevelGenerator : MonoBehaviour
         if (difficulty == 3)
         {
             noOfBlocks = 15;
-            width = 40f;
+            width = 30f;
             height = 20f;
             xMax = width;
             yMax = height;

@@ -26,8 +26,8 @@ public class Patrol : MonoBehaviour
 
     private void MoveToPatrolPoint()
     {
-        Vector2 newPosition = Vector3.MoveTowards(transform.position, currentPatrolPoint, 2f * Time.deltaTime);
-        transform.position = newPosition;
+        Vector3 newPosition = Vector3.MoveTowards(transform.position, currentPatrolPoint, 2f * Time.deltaTime);
+        transform.position = new Vector3(newPosition.x, newPosition.y, -1f);
 
         if (Vector2.Distance(transform.position, currentPatrolPoint) < 0.1)
         {
@@ -37,7 +37,6 @@ public class Patrol : MonoBehaviour
             AssignNewPatrolPoint();
 
             isAssigningFirstPatrolPoint = false;
-
         }
     }
 
