@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int difficulty = 1;
+    public int difficulty { get; set; }
 
     public static GameManager instance;
 
@@ -12,22 +13,33 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
 
-        DontDestroyOnLoad(gameObject);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        DontDestroyOnLoad(this);
+
+        difficulty = 1;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetDifficulty(int level)
     {
-        
+        difficulty = level;
     }
 
-    public void SetDifficulty(int difficulty)
+    public void LoadScene(string sceneName)
     {
-        this.difficulty = difficulty;
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void UnPause()
+    {
+        Time.timeScale = 1f;
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

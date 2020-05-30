@@ -52,11 +52,23 @@ public class CharacterController : MonoBehaviour
                 shield.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
 
-            //currentAngle += 90;
             currentAngle -= 90;
 
             isTurning = true;
         }
+
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    if (currentAngle == 360)
+        //    {
+        //        currentAngle = 0f;
+        //        shield.transform.rotation = Quaternion.Euler(0f, 0f, 0f); or Quaternion.Euler(0f, 0f, 270f); cant 
+        //    }
+
+        //    currentAngle += 90;
+
+        //    isTurning = true;
+        //}
     }
 
     private void MoveCamera()
@@ -68,12 +80,19 @@ public class CharacterController : MonoBehaviour
     {
         shield.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.MoveTowardsAngle(shield.transform.rotation.eulerAngles.z, currentAngle, 100f * Time.deltaTime));
 
-        Debug.Log(shield.transform.rotation.eulerAngles.z);
-
-        //Debug.Log(Mathf.Abs(currentAngle - shield.transform.rotation.eulerAngles.z));
         if (Mathf.Abs(currentAngle + (360 - shield.transform.rotation.eulerAngles.z)) <= 1)
         {
             isTurning = false;
         }
     }
+
+    //private void RotateShield()
+    //{
+    //    shield.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.MoveTowardsAngle(shield.transform.rotation.eulerAngles.z, currentAngle, 100f * Time.deltaTime));
+
+    //    if (Mathf.Abs(currentAngle - shield.transform.rotation.eulerAngles.z) <= 1)
+    //    {
+    //        isTurning = false;
+    //    }
+    //}
 }

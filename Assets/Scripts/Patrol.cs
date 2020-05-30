@@ -45,13 +45,13 @@ public class Patrol : MonoBehaviour
         float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
 
         ////Rounds the degree to a multiple of 90
-        targetAngle = Mathf.Round(targetAngle/90f) * 90f;
+        targetAngle = Mathf.Round(targetAngle / 90f) * 90f;
 
         transform.rotation = Quaternion.Euler(0f, 0f, Mathf.MoveTowards(transform.rotation.eulerAngles.z, targetAngle, 10f * Time.deltaTime));
 
         targetAngle = targetAngle < 0 ? 360 + targetAngle : targetAngle;
 
-        if (Mathf.Abs(targetAngle - transform.rotation.eulerAngles.z) > 0.1)
+        if (Mathf.Abs(targetAngle - transform.rotation.eulerAngles.z) > 0.2)
         {
             return;
         }

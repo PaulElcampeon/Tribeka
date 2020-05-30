@@ -26,7 +26,7 @@ public class LevelGenerator : MonoBehaviour
     private float xMax, yMax;
     private float xMin = 0;
     private float yMin = 0;
-    private float bufferSpaceSize = 3f;
+    private float bufferSpaceSize = 2.5f;
 
     private void Start()
     {
@@ -35,7 +35,6 @@ public class LevelGenerator : MonoBehaviour
         ResizeFloor();
         AssignStartAndEnd();
         SpawnPlayer();
-        //Camera.main.transform.position = new Vector3(width/2, height/2, Camera.main.transform.position.z);
         Generate();
     }
 
@@ -72,7 +71,6 @@ public class LevelGenerator : MonoBehaviour
             {
                 Instantiate(block, new Vector2(xPos, yPos), Quaternion.identity);
                 blocks--;
-
             }
 
             if (counter >= 1000)
@@ -106,19 +104,18 @@ public class LevelGenerator : MonoBehaviour
     {
         if (difficulty == 1)
         {
-            noOfBlocks = 5;
+            noOfBlocks = 7;
             width = 20f;
             height = 10f;
             xMax = width;
             yMax = height;
-
         }
 
         if (difficulty == 2)
         {
-            noOfBlocks = 10;
-            width = 25f;
-            height = 15f;
+            noOfBlocks = 12;
+            width = 40f;
+            height = 20f;
             xMax = width;
             yMax = height;
         }
@@ -126,8 +123,8 @@ public class LevelGenerator : MonoBehaviour
         if (difficulty == 3)
         {
             noOfBlocks = 15;
-            width = 30f;
-            height = 20f;
+            width = 60f;
+            height = 30f;
             xMax = width;
             yMax = height;
         }

@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour
     private void Awake()
     {
         lazer = GetComponent<LineRenderer>();
+        transform.position += transform.right/3;
     }
 
     private void Update()
@@ -22,11 +23,11 @@ public class Gun : MonoBehaviour
             //Debug.DrawLine(transform.position, hit.point, Color.red);
             lazer.SetPosition(0, transform.position);
             lazer.SetPosition(1, hit.point);
-        } else
-        {
-            //Debug.DrawLine(transform.position, transform.position + transform.right * distance, Color.red);
-            lazer.SetPosition(0, transform.position);
-            lazer.SetPosition(1, transform.position + transform.right * distance);
+
+            if (hit.collider.tag == "Player")
+            {
+                Debug.Log("Game Over");
+            }
         }
     }
 }

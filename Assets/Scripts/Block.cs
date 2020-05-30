@@ -92,14 +92,13 @@ public class Block : MonoBehaviour
         Vector3 position = transform.position;
         Vector3 scale = transform.localScale;
 
-        Vector3 patrolPoint1 = new Vector3(position.x + scale.x / 2f + 0.25f, position.y - scale.y / 2f - 0.25f); //top left
+        Vector3 patrolPoint1 = new Vector3(position.x + scale.x / 2f + 0.35f, position.y - scale.y / 2f - 0.35f); //bottom right
 
-        Vector3 patrolPoint2 = new Vector3(position.x - scale.x / 2f - 0.25f, position.y - scale.y / 2f - 0.25f); //bottom left
+        Vector3 patrolPoint2 = new Vector3(position.x - scale.x / 2f - 0.35f, position.y - scale.y / 2f - 0.35f); //bottom left
 
-        Vector3 patrolPoint3 = new Vector3(position.x - scale.x / 2f - 0.25f, position.y + scale.y / 2f + 0.25f); //bottom right
+        Vector3 patrolPoint3 = new Vector3(position.x - scale.x / 2f - 0.35f, position.y + scale.y / 2f + 0.35f); //top left
 
-        Vector3 patrolPoint4 = new Vector3(position.x + scale.x / 2f + 0.25f, position.y + scale.y / 2f + 0.25f); //top right
-
+        Vector3 patrolPoint4 = new Vector3(position.x + scale.x / 2f + 0.35f, position.y + scale.y / 2f + 0.35f); //top right
 
         patrolPoints[0] = patrolPoint1;
         patrolPoints[1] = patrolPoint2;
@@ -109,6 +108,6 @@ public class Block : MonoBehaviour
 
     private void AssignNoOfPatrols()
     {
-        noOfPatrols = Random.Range(1, 3);
+        noOfPatrols = Random.Range(1, 5);
     }
 }
