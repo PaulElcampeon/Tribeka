@@ -10,11 +10,11 @@ public class Patrol : MonoBehaviour
     private bool isFacingCorrectDirection;
     public bool isActive;
     private bool isFirstTurn = true;
-    private bool isAssigningFirstPatrolPoint = true;
 
     private void Awake()
     {
         currentPatrolPoint = transform.position;
+        PointInTheRightDirection();
     }
 
     void Update()
@@ -35,8 +35,6 @@ public class Patrol : MonoBehaviour
             isFacingCorrectDirection = false;
 
             AssignNewPatrolPoint();
-
-            isAssigningFirstPatrolPoint = false;
         }
     }
 
@@ -46,18 +44,14 @@ public class Patrol : MonoBehaviour
 
         float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
 
-        if (isFirstTurn)
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, targetAngle);
-            isFirstTurn = false;
-        } else
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, Mathf.MoveTowards(transform.rotation.eulerAngles.z, targetAngle, 10f * Time.deltaTime));
-        }
+        ////Rounds the degree to a multiple of 90
+        targetAngle = Mathf.Round(targetAngle/90f) * 90f;
+
+        transform.rotation = Quaternion.Euler(0f, 0f, Mathf.MoveTowards(transform.rotation.eulerAngles.z, targetAngle, 10f * Time.deltaTime));
 
         targetAngle = targetAngle < 0 ? 360 + targetAngle : targetAngle;
 
-        if (Mathf.Abs(targetAngle - transform.rotation.eulerAngles.z) > 0.2)
+        if (Mathf.Abs(targetAngle - transform.rotation.eulerAngles.z) > 0.1)
         {
             return;
         }
@@ -86,10 +80,30 @@ public class Patrol : MonoBehaviour
         {
             currentPatrolPoint = patrolPoints[currentIndex + 1];
         }
+
+        if (isFirstTurn)
+        {
+            PointInTheRightDirection();
+            isFirstTurn = false;
+        }
     }
 
     public void AssignFirstPatrolPoint(Vector3 point)
     {
         currentPatrolPoint = point;
     }
+
+    public void PointInTheRightDirection()
+    {
+        Vector3 moveDirection = currentPatrolPoint - transform.position;
+
+        float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+
+        targetAngle = targetAngle < 0 ? 360 + targetAngle : targetAngle;
+
+        transform.rotation = Quaternion.Euler(0f, 0f, targetAngle);
+
+        isFacingCorrectDirection = true;
+    }
+
 }
