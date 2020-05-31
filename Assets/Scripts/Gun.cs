@@ -24,15 +24,23 @@ public class Gun : MonoBehaviour
 
             if (hit.collider.tag == "Player")
             {
-                if (GameManager.instance.gameWon) return;
+                if (GameManager.instance.isGameWon) return;
 
-                if (GameManager.instance.gameOver == false)
+                if (GameManager.instance.isGameOver == false)
                 {
-                    GameManager.instance.gameOver = true;                    
+                    GameManager.instance.isGameOver = true;                    
                     hit.collider.gameObject.GetComponent<CharacterController>().Explode();
                     StartCoroutine(Camera.main.gameObject.GetComponent<CameraShake>().Shake(1f, 0.5f));
+                    StartCoroutine(OpenRetryPanel());
                 }
             }
         }
+    }
+
+    private IEnumerator OpenRetryPanel()
+    {
+        yield return new WaitForSeconds(2f);
+
+        InGameMenu.instance.OpenRetryPanel();
     }
 }
