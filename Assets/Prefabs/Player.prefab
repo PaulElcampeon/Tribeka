@@ -378,6 +378,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   shield: {fileID: 1738299059}
+  particleExplosionRef: {fileID: 4119170415588131099, guid: dfd1a14a68492044aad2d87ef70ce297,
+    type: 3}
 --- !u!50 &2094131148
 Rigidbody2D:
   serializedVersion: 4
