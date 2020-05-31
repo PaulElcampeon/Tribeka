@@ -120,7 +120,7 @@ public class LevelGenerator : MonoBehaviour
     {
         if (difficulty == 1)
         {
-            noOfBlocks = 6;
+            noOfBlocks = 5;
             width = 20f;
             height = 10f;
             xMax = width;
@@ -129,7 +129,7 @@ public class LevelGenerator : MonoBehaviour
 
         if (difficulty == 2)
         {
-            noOfBlocks = 8;
+            noOfBlocks = 7;
             width = 25f;
             height = 10f;
             xMax = width;
