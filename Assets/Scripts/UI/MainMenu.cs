@@ -65,7 +65,7 @@ public class MainMenu : MonoBehaviour
 
     public void CloseActivePanel()
     {
-        //SoundManager.instance.PlaySFX(2);
+        SoundManager.instance.PlaySFX(1);
 
         if (soundPanel.activeInHierarchy) { soundPanel.SetActive(false); return; }
         if (controlsPanel.activeInHierarchy) { controlsPanel.SetActive(false); return; }
