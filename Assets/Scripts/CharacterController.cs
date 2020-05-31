@@ -30,6 +30,8 @@ public class CharacterController : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.isGameWon) return;
+
         MoveCamera();
 
         ComputePlayerInpute();
