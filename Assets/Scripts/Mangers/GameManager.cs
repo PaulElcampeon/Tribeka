@@ -6,9 +6,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public bool gameWon { get; set; }
+    public bool isGameWon { get; set; }
 
-    public bool gameOver { get; set; }
+    public bool isGameOver { get; set; }
 
     public int difficulty { get; set; }
 
