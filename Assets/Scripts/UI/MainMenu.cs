@@ -21,42 +21,42 @@ public class MainMenu : MonoBehaviour
 
     public void OpenSettingsPanel()
     {
-        //SoundManager.instance.PlaySFX(1);
+        SoundManager.instance.PlaySFX(1);
 
         settingsPanel.SetActive(true);
     }
 
     public void OpenSoundPanel()
     {
-        //SoundManager.instance.PlaySFX(1);
+        SoundManager.instance.PlaySFX(1);
 
         soundPanel.SetActive(true);
     }
 
     public void OpenControlsPanel()
     {
-        //SoundManager.instance.PlaySFX(1);
+        SoundManager.instance.PlaySFX(1);
 
         controlsPanel.SetActive(true);
     }
 
     public void OpenCreditsPanel()
     {
-        //SoundManager.instance.PlaySFX(1);
+        SoundManager.instance.PlaySFX(1);
 
         creditsPanel.SetActive(true);
     }
 
     public void OpenDifficultyPanel()
     {
-        //SoundManager.instance.PlaySFX(1);
+        SoundManager.instance.PlaySFX(1);
 
         difficultyPanel.SetActive(true);
     }
 
     public void SetDifficulty(int level)
     {
-        //SoundManager.instance.PlaySFX(1);
+        SoundManager.instance.PlaySFX(1);
 
         GameManager.instance.SetDifficulty(level);
 
