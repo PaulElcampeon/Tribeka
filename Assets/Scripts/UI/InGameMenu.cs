@@ -24,9 +24,16 @@ public class InGameMenu : MonoBehaviour
 
     public bool isMenuOpen;
 
+    public static InGameMenu instance;
+
+    private void Start()
+    {
+        instance = this;
+    }
+
     public void OpenMenuPanel()
     {
-        if (retryPanel.activeInHierarchy || victoryPanel.activeInHierarchy) return;
+        if (retryPanel.activeInHierarchy || victoryPanel.activeInHierarchy || GameManager.instance.isGameOver || GameManager.instance.isGameWon) return;
 
         SoundManager.instance.PlaySFX(1);
 
@@ -74,7 +81,7 @@ public class InGameMenu : MonoBehaviour
 
     public void CloseMenu()
     {
-        //SoundManager.instance.PlaySFX(2);
+        SoundManager.instance.PlaySFX(1);
 
         GameManager.instance.UnPause();
 
@@ -85,7 +92,7 @@ public class InGameMenu : MonoBehaviour
 
     public void CloseActivePanel()
     {
-        //SoundManager.instance.PlaySFX(2);
+        SoundManager.instance.PlaySFX(1);
 
         if (soundPanel.activeInHierarchy) { soundPanel.SetActive(false); return; }
         if (controlsPanel.activeInHierarchy) { controlsPanel.SetActive(false); return; }
@@ -98,6 +105,10 @@ public class InGameMenu : MonoBehaviour
 
         SoundManager.instance.PlaySFX(1);
 
+        GameManager.instance.isGameOver = false;
+
+        GameManager.instance.isGameWon = false;
+
         GameManager.instance.UnPause();
 
         GameManager.instance.LoadScene("Game");
@@ -108,6 +119,10 @@ public class InGameMenu : MonoBehaviour
         SoundManager.instance.PlaySFX(1);
 
         GameManager.instance.UnPause();
+
+        GameManager.instance.isGameOver = false;
+
+        GameManager.instance.isGameWon = false;
 
         GameManager.instance.LoadScene("Menu");
     }
