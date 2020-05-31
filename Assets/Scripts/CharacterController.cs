@@ -51,6 +51,8 @@ public class CharacterController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            SoundManager.instance.PlaySFX(2);
+
             if (currentAngle == -360)
             {
                 currentAngle = 0f;
@@ -94,6 +96,7 @@ public class CharacterController : MonoBehaviour
     public void Explode()
     {
         Instantiate(particleExplosionRef, transform.position, Quaternion.identity);
+        SoundManager.instance.PlaySFX(0);
         Destroy(gameObject);
     }
 
