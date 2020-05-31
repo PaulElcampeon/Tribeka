@@ -16,16 +16,12 @@ public class Block : MonoBehaviour
 
     private Vector3 leftStartPos, rightStartPos, upStartPos, downStartPos;
 
-    private SpriteRenderer spriteRender;
-
-    private void Awake()
+    private void Start()
     {
-        spriteRender = GetComponentInChildren<SpriteRenderer>();
         AssignNoOfPatrols();
         AssignPatrolPoints();
         CreatePatrols();
     }
-
 
     private void CreatePatrols()
     {
@@ -92,13 +88,13 @@ public class Block : MonoBehaviour
         Vector3 position = transform.position;
         Vector3 scale = transform.localScale;
 
-        Vector3 patrolPoint1 = new Vector3(position.x + scale.x / 2f + 0.35f, position.y - scale.y / 2f - 0.35f); //bottom right
+        Vector3 patrolPoint1 = new Vector3(position.x + scale.x / 2f + 0.35f, position.y - scale.y / 2f - 0.35f, -1f); //bottom right
 
-        Vector3 patrolPoint2 = new Vector3(position.x - scale.x / 2f - 0.35f, position.y - scale.y / 2f - 0.35f); //bottom left
+        Vector3 patrolPoint2 = new Vector3(position.x - scale.x / 2f - 0.35f, position.y - scale.y / 2f - 0.35f, -1f); //bottom left
 
-        Vector3 patrolPoint3 = new Vector3(position.x - scale.x / 2f - 0.35f, position.y + scale.y / 2f + 0.35f); //top left
+        Vector3 patrolPoint3 = new Vector3(position.x - scale.x / 2f - 0.35f, position.y + scale.y / 2f + 0.35f, -1f); //top left
 
-        Vector3 patrolPoint4 = new Vector3(position.x + scale.x / 2f + 0.35f, position.y + scale.y / 2f + 0.35f); //top right
+        Vector3 patrolPoint4 = new Vector3(position.x + scale.x / 2f + 0.35f, position.y + scale.y / 2f + 0.35f, -1f); //top right
 
         patrolPoints[0] = patrolPoint1;
         patrolPoints[1] = patrolPoint2;
@@ -108,6 +104,8 @@ public class Block : MonoBehaviour
 
     private void AssignNoOfPatrols()
     {
-        noOfPatrols = Random.Range(1, 5);
+        if (GameManager.instance.difficulty == 1) noOfPatrols = Random.Range(1, 3);
+        if (GameManager.instance.difficulty == 2) noOfPatrols = Random.Range(1, 4);
+        if (GameManager.instance.difficulty == 3) noOfPatrols = Random.Range(1, 5);
     }
 }

@@ -14,9 +14,7 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
-        float distance = 30f;
-
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, distance);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right);
 
         if (hit.point != Vector2.zero)
         {
@@ -26,7 +24,14 @@ public class Gun : MonoBehaviour
 
             if (hit.collider.tag == "Player")
             {
-                Debug.Log("Game Over");
+                if (GameManager.instance.gameWon) return;
+
+                if (GameManager.instance.gameOver == false)
+                {
+                    GameManager.instance.gameOver = true;                    
+                    hit.collider.gameObject.GetComponent<CharacterController>().Explode();
+                    StartCoroutine(Camera.main.gameObject.GetComponent<CameraShake>().Shake(1f, 0.5f));
+                }
             }
         }
     }

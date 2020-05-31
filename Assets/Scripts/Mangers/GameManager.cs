@@ -5,17 +5,22 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
+    public bool gameWon { get; set; }
+
+    public bool gameOver { get; set; }
+
     public int difficulty { get; set; }
 
     public static GameManager instance;
 
     private void Awake()
     {
+        difficulty = 1;
+
         instance = this;
 
         DontDestroyOnLoad(this);
-
-        difficulty = 1;
     }
 
     public void SetDifficulty(int level)

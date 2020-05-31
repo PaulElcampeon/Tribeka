@@ -19,14 +19,24 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField]
     private GameObject floorRef;
 
+    [SerializeField]
+    private GameObject helicopterRef;
+
     private int difficulty;
     private int noOfBlocks;
-    private float width;
-    private float height;
+    public float width;
+    public float height;
     private float xMax, yMax;
     private float xMin = 0;
     private float yMin = 0;
     private float bufferSpaceSize = 2.5f;
+
+    public static LevelGenerator instance;
+
+    private void Awake()
+    {
+        instance = this;    
+    }
 
     private void Start()
     {
@@ -36,6 +46,7 @@ public class LevelGenerator : MonoBehaviour
         AssignStartAndEnd();
         SpawnPlayer();
         Generate();
+        SpawnHelicopter();
     }
 
     public void Generate()
@@ -83,6 +94,11 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    private void SpawnHelicopter()
+    {
+        Instantiate(helicopterRef, new Vector3(0f, 0f), Quaternion.identity);
+    }
+
     private void ResizeFloor()
     {
         GameObject floor = Instantiate(floorRef, new Vector3(width / 2f, height / 2f), Quaternion.identity);
@@ -104,7 +120,7 @@ public class LevelGenerator : MonoBehaviour
     {
         if (difficulty == 1)
         {
-            noOfBlocks = 7;
+            noOfBlocks = 6;
             width = 20f;
             height = 10f;
             xMax = width;
@@ -113,18 +129,18 @@ public class LevelGenerator : MonoBehaviour
 
         if (difficulty == 2)
         {
-            noOfBlocks = 12;
-            width = 40f;
-            height = 20f;
+            noOfBlocks = 8;
+            width = 25f;
+            height = 10f;
             xMax = width;
             yMax = height;
         }
 
         if (difficulty == 3)
         {
-            noOfBlocks = 15;
-            width = 60f;
-            height = 30f;
+            noOfBlocks = 10;
+            width = 30f;
+            height = 20f;
             xMax = width;
             yMax = height;
         }

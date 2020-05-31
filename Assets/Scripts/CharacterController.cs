@@ -12,11 +12,16 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     private GameObject shield;
 
+    [SerializeField]
+    private GameObject particleExplosionRef;
+
+
     private float horizontal;
     private float vertical;
     private float currentAngle = 0f;
 
     private bool isTurning;
+    private bool freezeCamera;
 
     private void Awake()
     {
@@ -84,6 +89,12 @@ public class CharacterController : MonoBehaviour
         {
             isTurning = false;
         }
+    }
+
+    public void Explode()
+    {
+        Instantiate(particleExplosionRef, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     //private void RotateShield()
