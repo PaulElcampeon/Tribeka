@@ -8,7 +8,18 @@ public class End : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            GameManager.instance.gameWon = true;
+            GameManager.instance.isGameWon = true;
+
+            SoundManager.instance.PlaySFX(3);
+
+            StartCoroutine(OpenVictoryPanel());
         }
+    }
+
+    private IEnumerator OpenVictoryPanel()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        InGameMenu.instance.OpenVictoryPanel();
     }
 }
