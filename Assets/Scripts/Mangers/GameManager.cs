@@ -16,10 +16,10 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        difficulty = 1;
-
         if (instance == null)
         {
+            difficulty = 1;
+
             instance = this;
 
         } else
@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this);
+        Debug.Log(difficulty);
+
     }
 
     public void SetDifficulty(int level)
