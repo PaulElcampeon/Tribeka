@@ -28,6 +28,7 @@ public class Gun : MonoBehaviour
 
                 if (GameManager.instance.isGameOver == false)
                 {
+                    SoundManager.instance.PlaySFX(Random.Range(4, 6));
                     GameManager.instance.isGameOver = true;                    
                     hit.collider.gameObject.GetComponent<CharacterController>().Explode();
                     StartCoroutine(Camera.main.gameObject.GetComponent<CameraShake>().Shake(1f, 0.5f));
