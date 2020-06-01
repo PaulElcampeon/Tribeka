@@ -28,8 +28,6 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this);
-        Debug.Log(difficulty);
-
     }
 
     public void SetDifficulty(int level)
