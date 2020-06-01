@@ -104,8 +104,9 @@ public class Block : MonoBehaviour
 
     private void AssignNoOfPatrols()
     {
-        if (GameManager.instance.difficulty == 1) noOfPatrols = Random.Range(1, 3);
-        if (GameManager.instance.difficulty == 2) noOfPatrols = Random.Range(1, 4);
-        if (GameManager.instance.difficulty == 3) noOfPatrols = Random.Range(1, 5);
+        if (GameManager.instance.difficulty >= 1 && GameManager.instance.difficulty <= 5) noOfPatrols = Random.Range(1, 2);
+        if (GameManager.instance.difficulty >= 6 && GameManager.instance.difficulty <= 10) noOfPatrols = Random.Range(1, 3);
+        if (GameManager.instance.difficulty >= 11 && GameManager.instance.difficulty <= 15) noOfPatrols = Random.Range(1, 4);
+        if (GameManager.instance.difficulty >= 16 && GameManager.instance.difficulty <= 20) noOfPatrols = Random.Range(1, 5);
     }
 }

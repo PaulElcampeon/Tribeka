@@ -46,7 +46,7 @@ public class LevelGenerator : MonoBehaviour
         AssignStartAndEnd();
         SpawnPlayer();
         Generate();
-        SpawnHelicopter();
+        if (difficulty >= 5) SpawnHelicopter();
     }
 
     private void Generate()
@@ -99,7 +99,6 @@ public class LevelGenerator : MonoBehaviour
     {
         Generate();
         SpawnHelicopter();
-
     }
 
     private void SpawnHelicopter()
@@ -109,7 +108,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void ResizeFloor()
     {
-        GameObject floor = Instantiate(floorRef, new Vector3(width / 2f, height / 2f), Quaternion.identity);
+        GameObject floor = Instantiate(floorRef, new Vector3(width / 2f, height / 2f, 1f), Quaternion.identity);
         floor.transform.localScale = new Vector3(width, height);
     }
 
@@ -126,32 +125,46 @@ public class LevelGenerator : MonoBehaviour
 
     private void AssignPropertiesBasedOnDifficulty()
     {
-        if (difficulty == 1)
+        if (difficulty >= 1 && difficulty <= 5)
         {
-            noOfBlocks = 5;
             width = 20f;
             height = 10f;
-            xMax = width;
-            yMax = height;
-        }
-
-        if (difficulty == 2)
+        } else if (difficulty >= 6 && difficulty <= 10)
         {
-            noOfBlocks = 7;
-            width = 25f;
-            height = 10f;
-            xMax = width;
-            yMax = height;
-        }
-
-        if (difficulty == 3)
-        {
-            noOfBlocks = 10;
             width = 30f;
-            height = 20f;
-            xMax = width;
-            yMax = height;
+            height = 10f;
+        } else if (difficulty >= 11 && difficulty <= 15)
+        {
+            width = 30f;
+            height = 15f;
+        } else if (difficulty >= 16 && difficulty <= 20)
+        {
+            width = 40f;
+            height = 15f;
         }
+
+        if (difficulty == 1) noOfBlocks = 5;
+        if (difficulty == 2) noOfBlocks = 6;
+        if (difficulty == 3) noOfBlocks = 7;
+        if (difficulty == 4) noOfBlocks = 8;
+        if (difficulty == 5) noOfBlocks = 9;
+        if (difficulty == 6) noOfBlocks = 10;
+        if (difficulty == 8) noOfBlocks = 11;
+        if (difficulty == 9) noOfBlocks = 12;
+        if (difficulty == 10) noOfBlocks = 13;
+        if (difficulty == 11) noOfBlocks = 14;
+        if (difficulty == 12) noOfBlocks = 15;
+        if (difficulty == 13) noOfBlocks = 16;
+        if (difficulty == 14) noOfBlocks = 17;
+        if (difficulty == 15) noOfBlocks = 18;
+        if (difficulty == 16) noOfBlocks = 19;
+        if (difficulty == 17) noOfBlocks = 20;
+        if (difficulty == 18) noOfBlocks = 21;
+        if (difficulty == 19) noOfBlocks = 22;
+        if (difficulty == 20) noOfBlocks = 23;
+
+        xMax = width;
+        yMax = height;
     }
 
     private void DestroyAnyCreatedBlocks()

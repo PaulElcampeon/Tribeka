@@ -114,6 +114,24 @@ public class InGameMenu : MonoBehaviour
         GameManager.instance.LoadScene("Game");
     }
 
+
+    public void LoadNextGame()
+    {
+        if (inGameMenuPanel.activeInHierarchy) return;
+
+        if (GameManager.instance.difficulty < 20) GameManager.instance.difficulty++;
+
+        SoundManager.instance.PlaySFX(1);
+
+        GameManager.instance.isGameOver = false;
+
+        GameManager.instance.isGameWon = false;
+
+        GameManager.instance.UnPause();
+
+        GameManager.instance.LoadScene("Game");
+    }
+
     public void LoadMenu()
     {
         SoundManager.instance.PlaySFX(1);
