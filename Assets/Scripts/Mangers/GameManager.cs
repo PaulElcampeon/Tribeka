@@ -18,7 +18,14 @@ public class GameManager : MonoBehaviour
     {
         difficulty = 1;
 
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+
+        } else
+        {
+            Destroy(this.gameObject);
+        }
 
         DontDestroyOnLoad(this);
     }
