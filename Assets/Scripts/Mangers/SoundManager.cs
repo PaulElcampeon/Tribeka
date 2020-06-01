@@ -33,7 +33,7 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        sfxVolume = 0.2f;
+        sfxVolume = 0.5f;
         bgmVolume = 0.4f;
 
         PlayBGM(Random.Range(0, 3));
