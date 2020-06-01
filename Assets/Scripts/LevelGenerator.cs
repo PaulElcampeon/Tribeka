@@ -29,7 +29,7 @@ public class LevelGenerator : MonoBehaviour
     private float xMax, yMax;
     private float xMin = 0;
     private float yMin = 0;
-    private float bufferSpaceSize = 2.5f;
+    private float bufferSpaceSize = 3f;
 
     public static LevelGenerator instance;
 
@@ -49,7 +49,7 @@ public class LevelGenerator : MonoBehaviour
         SpawnHelicopter();
     }
 
-    public void Generate()
+    private void Generate()
     {
         DestroyAnyCreatedBlocks();
         DestroyAnyCreatedPatrols();
@@ -92,6 +92,14 @@ public class LevelGenerator : MonoBehaviour
                 blocks = noOfBlocks;
             }
         }
+    }
+
+    //For Testing purposes
+    public void Regenerate()
+    {
+        Generate();
+        SpawnHelicopter();
+
     }
 
     private void SpawnHelicopter()
